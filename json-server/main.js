@@ -1,16 +1,7 @@
-// var courseApi = 'http://localhost:3000/courses';
-
-// fetch(courseApi)
-//     .then(function (respone) {
-//         return respone.json();
-//     })
-//     .then(function (cousres) {
-//         console.log(cousres);
-//     });
-
-
 
 var courseApi = 'http://localhost:3000/courses';
+var editBtn = document.querySelector('#editBtn'); 
+    editBtn.style.display ='none';
 
 function start() {
     // getCourses(function (courses) {
@@ -37,6 +28,7 @@ function renderCourses(courses) {
                 <h4>${course.title}</h4>
                 <p>${course.description}</p>
                 <button onclick="handleDeleteCourse(${course.id})">Xóa</button>
+                <button class="editBtn"onclick="handleEditCourse(${course.id})">Sửa</button>
             </li>
         `;
     });
@@ -59,6 +51,25 @@ function createCourse(data, callback) {
         .then(callback);
 }
 
+function  handleCreateForm() {
+    var createBtn = document.querySelector('#create');
+    createBtn.onclick = function () {
+        // alert('ok')
+        var title = document.querySelector('input[name="title"]').value;
+        var description = document.querySelector('input[name="description"]').value;
+        // console.log(title, description);
+        var formData = {
+            title: title,
+            description: description
+        };
+        
+        createCourse(formData, function () {
+            getCourses(renderCourses);      
+        });
+    }
+
+}
+
 function handleDeleteCourse(id) {
     var option = {
         method: 'DELETE',
@@ -79,19 +90,52 @@ function handleDeleteCourse(id) {
         });
 }
 
-function  handleCreateForm() {
-    var createBtn = document.querySelector('#create');
-    createBtn.onclick = function () {
-        // alert('ok')
-        var title = document.querySelector('input[name="title"]').value;
-        var description = document.querySelector('input[name="description"]').value;
-        // console.log(title, description);
-        var formData = {
-            title: title,
-            description: description
-        };
-
-        createCourse(formData);
-
+function editCourse(id, data, callback) {
+    var option = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     }
+    fetch(courseApi + '/' + id, option)
+        .then(function (respone) {
+            return respone.json();
+        })
+        .then(callback);
 }
+
+
+
+function handleEditCourse(id) {
+    var editBtn = document.getElementById('editBtn');
+    editBtn.style.display ='block';
+
+    // lấy nội dung edit
+    var getIdItem = document.querySelector('.course-item-' + id);  
+    var getTitle = getIdItem.querySelector('h4').textContent;
+    var getDescription = getIdItem.querySelector('p').textContent;
+    // console.log(getTitle)
+
+    // gán nội dung edit vào input
+    document.querySelector('input[name="title"]').value = getTitle;
+    document.querySelector('input[name="description"]').value = getDescription;
+    document.querySelector('#create').style.display = 'none';
+    // console.log(getTitle);
+
+    editBtn.onclick = function () {
+        var editTitle = document.querySelector('input[name="title"]').value;
+        var editDescription = document.querySelector('input[name="description"]').value;
+
+        var formEdit = {
+            title: editTitle,
+            description: editDescription,
+
+        }
+        editCourse(id, formEdit, function () {
+            getCourses(renderCourses);      
+        });
+    }
+   
+}
+

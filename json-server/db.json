@@ -1,19 +1,24 @@
 {
   "courses": [
     {
-      "id": 1,
-      "title": "Thời gian và Động lực",
-      "description": "Có lẽ cũng rất lâu rồi mà tôi chưa đụng đến thứ được gọi là 'timetable'. Hay dân dã hơn thì người ta hay gọi là 'Lịch thường nhật'"
+      "title": "Update Xây Dựng Website với ReactJS ",
+      "description": "UPDATE Khóa học ReactJS từ cơ bản tới nâng cao, kết quả của khóa học này l với ReactJS. Cuối khóa học này bạn sẽ sở hữu một dự án giống Tiktok.com, bạn có thể tự tin đi xin việc khi nắm chắc các kiến thức được chia sẻ trong khóa học này.",
+      "id": 13
     },
     {
-      "title": "Responsive Với Grid System",
-      "description": "Trong khóa này chúng ta sẽ học về cách xây dựng giao diện web responsive với Grid System, tương tự Bootstrap 4.",
-      "id": 4
+      "title": "Xây Dựng Website với ReactJS ",
+      "description": " Khóa học ReactJS từ cơ bản tới nâng cao, kết quả của khóa học này l với ReactJS. Cuối khóa học này bạn sẽ sở hữu một dự án giống Tiktok.com, bạn có thể tự tin đi xin việc khi nắm chắc các kiến thức được chia sẻ trong khóa học này.",
+      "id": 14
     },
     {
-      "title": "JavaScript Nâng Cao",
+      "title": "JavaScript Nâng Cao update",
       "description": "Hiểu sâu hơn về cách Javascript hoạt động, tìm hiểu về IIFE, closure, reference types, this keyword, bind, call, apply, prototype, ...",
-      "id": 8
+      "id": 17
+    },
+    {
+      "title": "test 1 update thành công",
+      "description": "test 1 update thành công",
+      "id": 18
     }
   ]
 }
